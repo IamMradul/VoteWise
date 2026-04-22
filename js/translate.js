@@ -8,11 +8,13 @@ function googleTranslateElementInit() {
 }
 
 // Dynamically inject the Google Translate script
+if (typeof document !== 'undefined') {
 (function() {
     const translateScript = document.createElement('script');
     translateScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
     document.head.appendChild(translateScript);
 })();
+}
 
 // Extracted for testing language code mapping
 const LanguageMapping = {

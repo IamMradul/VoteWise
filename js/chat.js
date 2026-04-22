@@ -1,3 +1,4 @@
+if (typeof document !== 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
     const chatToggle = document.getElementById('chat-toggle');
     const chatWidget = document.getElementById('chat-widget');
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el) el.remove();
     }
 });
+}
 
 async function queryGeminiAPI(userQuery) {
     // Determine the API key from config.local.js or config.example.js (fallback)

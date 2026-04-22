@@ -1,3 +1,4 @@
+if (typeof document !== 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('eligibility-form');
     const resultDiv = document.getElementById('eligibility-result');
@@ -51,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resultDiv.hidden = false;
     }
 });
+}
 
 // Extracted logic for testing purposes (CommonJS / Browser compatible)
 function evaluateEligibility(age, isCitizen, isResident) {

@@ -1,3 +1,4 @@
+if (typeof document !== 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
     const startQuizBtn = document.getElementById('start-quiz');
     const quizContent = document.getElementById('quiz-content');
@@ -139,6 +140,7 @@ Each object must match this schema:
         });
     }
 });
+}
 
 // Extracted for testing
 function evaluateQuizAnswer(selectedIndex, correctIndex) {
