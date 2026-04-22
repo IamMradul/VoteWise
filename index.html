@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteWise - Election Process Education</title>
+    <!-- Google Fonts Noto Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav aria-label="Main Navigation">
+        <div class="logo">VoteWise</div>
+        <!-- Google Translate Widget Container -->
+        <div id="google_translate_element" aria-label="Language Selector"></div>
+    </nav>
+    <main>
+        <section id="hero" class="hero-section">
+            <h1>Understand the Election Process of India</h1>
+            <p>Empowering citizens to understand the democratic elections run by the Election Commission of India. Learn your rights, the process, and register to vote.</p>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="timeline-section" aria-labelledby="timeline-heading">
+            <h2 id="timeline-heading">The Election Journey</h2>
+            <div class="timeline-container">
+                <!-- Javascript will handle the toggles here -->
+                <button class="timeline-step" aria-expanded="false" aria-controls="step-1-details">Announcement</button>
+                <div id="step-1-details" class="step-details" hidden>
+                    <p>The Election Commission of India points out the dates and phases of the upcoming elections. The Model Code of Conduct takes effect.</p>
+                </div>
+                
+                <button class="timeline-step" aria-expanded="false" aria-controls="step-2-details">Voter Registration</button>
+                <div id="step-2-details" class="step-details" hidden>
+                    <p>Citizens verify their names on electoral rolls and register for new Voter IDs.</p>
+                </div>
+                
+                <button class="timeline-step" aria-expanded="false" aria-controls="step-3-details">Nomination</button>
+                <div id="step-3-details" class="step-details" hidden>
+                    <p>Candidates file their nominations along with affidavits declaring their assets and criminal records.</p>
+                </div>
+                
+                <button class="timeline-step" aria-expanded="false" aria-controls="step-4-details">Campaigning</button>
+                <div id="step-4-details" class="step-details" hidden>
+                    <p>Political parties canvas for votes, abiding by ECI guidelines. Stops 48 hours before polling begins.</p>
+                </div>
+                
+                <button class="timeline-step" aria-expanded="false" aria-controls="step-5-details">Voting Day</button>
+                <div id="step-5-details" class="step-details" hidden>
+                    <p>Voters cast their ballot using EVMs (Electronic Voting Machines) and VVPAT at polling booths.</p>
+                </div>
+                
+                <button class="timeline-step" aria-expanded="false" aria-controls="step-6-details">Counting & Results</button>
+                <div id="step-6-details" class="step-details" hidden>
+                    <p>EVMs are securely stored in strong rooms until counting day, when results are officially declared.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Voter Eligibility Checker -->
+        <section id="eligibility" class="eligibility-section" aria-labelledby="eligibility-heading">
+            <h2 id="eligibility-heading">Voter Eligibility Checker</h2>
+            <form id="eligibility-form">
+                <label for="age">What is your age?</label>
+                <input type="number" id="age" name="age" required min="1">
+                
+                <fieldset>
+                    <legend>Are you a citizen of India?</legend>
+                    <label><input type="radio" name="citizenship" value="yes" required> Yes</label>
+                    <label><input type="radio" name="citizenship" value="no"> No</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Are you an ordinary resident at your current address?</legend>
+                    <label><input type="radio" name="resident" value="yes" required> Yes</label>
+                    <label><input type="radio" name="resident" value="no"> No</label>
+                </fieldset>
+
+                <button type="submit" aria-label="Check Eligibility">Check Eligibility</button>
+            </form>
+            <div id="eligibility-result" aria-live="polite" style="margin-top: 1rem;"></div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="quiz-section" aria-labelledby="quiz-heading">
+            <h2 id="quiz-heading">Test Your Election Knowledge</h2>
+            <div id="quiz-container">
+                <button id="start-quiz" aria-label="Start Quiz">Generate & Start Quiz</button>
+                <div id="quiz-content" hidden>
+                    <!-- Quiz goes here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Maps Section -->
+        <section id="maps" class="maps-section" aria-labelledby="maps-heading">
+            <h2 id="maps-heading">Find Your Polling Booth</h2>
+            <p>Explore basic coverage via Maps Integration.</p>
+            <form id="map-form" style="margin-bottom: 1rem; flex-direction: row;">
+                <input type="text" id="location-input" placeholder="Enter your city or pin code" required style="flex: 1;">
+                <button type="submit" aria-label="Search Booth">Search</button>
+            </form>
+            <div id="map-container">
+                <!-- Google Maps Embed dynamically loaded here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Chat Window -->
+    <section id="chat-widget" class="chat-widget" aria-label="AI Chat Assistant">
+        <div class="chat-header">
+            <h3>VoteWise Assistant</h3>
+            <button id="chat-toggle" aria-label="Toggle Chat">_</button>
+        </div>
+        <div class="chat-body" hidden id="chat-body">
+            <div id="chat-messages" class="chat-messages" aria-live="polite">
+                <div class="message system">Hello! Ask me anything about EVMs, Model Code of Conduct, NOTA, or the Indian election process!</div>
+            </div>
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input" placeholder="Ask a question..." required>
+                <button type="submit" aria-label="Send Message">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="js/config.example.js"></script>
+    <script src="js/config.local.js" onerror="console.warn('config.local.js not found. Using example config.')"></script>
+    <script src="js/translate.js"></script>
+    <script src="js/timeline.js"></script>
+    <script src="js/eligibility.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/maps.js"></script>
+    <script>
+        // Inline service worker registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(err => {
+                    console.error('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

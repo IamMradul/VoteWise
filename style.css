@@ -1,0 +1,205 @@
+/* Indian tricolor palette: saffron #FF9933, green #138808, white base */
+:root {
+    --color-saffron: #FF9933;
+    --color-green: #138808;
+    --color-white: #FFFFFF;
+    --color-dark: #333333;
+    --color-bg-light: #F9F9F9;
+    --color-grey: #DDDDDD;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg-light);
+    color: var(--color-dark);
+    line-height: 1.6;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-bottom: 4px solid var(--color-green);
+    border-top: 4px solid var(--color-saffron);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+section {
+    background-color: var(--color-white);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+h1, h2, h3 {
+    color: var(--color-saffron);
+}
+
+button {
+    background-color: var(--color-saffron);
+    color: var(--color-white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #E68A2E;
+}
+
+button:focus {
+    outline: 3px solid var(--color-green);
+    outline-offset: 2px;
+}
+
+/* Timeline specific styling */
+.timeline-step {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    background-color: var(--color-bg-light);
+    color: var(--color-dark);
+    border-left: 4px solid var(--color-green);
+}
+.timeline-step:hover {
+    background-color: var(--color-grey);
+}
+.step-details {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--color-saffron);
+    background-color: var(--color-bg-light);
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input[type="number"], input[type="text"] {
+    padding: 0.75rem;
+    border: 1px solid var(--color-grey);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+fieldset {
+    border: 1px solid var(--color-grey);
+    border-radius: 4px;
+    padding: 1rem;
+}
+
+/* Chat Widget */
+.chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 1px solid var(--color-grey);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.chat-header {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    padding: 1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    margin: 0;
+    color: var(--color-white);
+    font-size: 1.1rem;
+}
+
+.chat-header button {
+    background: transparent;
+    padding: 0;
+    font-size: 1.2rem;
+}
+
+.chat-body {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.message {
+    padding: 0.75rem;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.message.system {
+    background-color: var(--color-bg-light);
+    align-self: flex-start;
+}
+
+.message.user {
+    background-color: var(--color-saffron);
+    color: var(--color-white);
+    align-self: flex-end;
+}
+
+.chat-form {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid var(--color-grey);
+    gap: 0.5rem;
+}
+
+.chat-form input {
+    flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .chat-widget {
+        width: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
+}
