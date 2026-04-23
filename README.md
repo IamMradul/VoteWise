@@ -124,11 +124,13 @@ VoteWise/
 ├── index.html              # Main SPA layout with semantic HTML & ARIA labels
 ├── style.css               # Custom CSS with Indian tricolor design system
 ├── sw.js                   # Service worker for offline caching
+├── manifest.json           # PWA manifest for installability
 ├── .env.example            # Environment variable reference
 ├── .gitignore              # Excludes config.local.js and sensitive files
 │
 ├── js/
 │   ├── config.example.js   # API key template (commit this, not the real keys)
+│   ├── init.js             # Initialization logic and module coordination
 │   ├── chat.js             # Gemini chat assistant logic
 │   ├── quiz.js             # Dynamic quiz generation & rendering
 │   ├── eligibility.js      # Voter eligibility rule engine
@@ -240,12 +242,6 @@ VoteWise was built with inclusive design as a first-class concern:
 3. **API keys** are supplied by the user running the app — this is a client-side educational tool, not a production service with a backend.
 4. **Gemini output** is assumed to return valid JSON for quiz generation; a client-side sanitization step (stripping markdown fences) handles edge cases.
 5. The app targets modern evergreen browsers (Chrome, Firefox, Edge, Safari) that support ES6+ and Service Workers.
-
----
-
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
