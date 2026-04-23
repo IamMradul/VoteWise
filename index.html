@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VoteWise - Election Process Education</title>
+    <meta name="description" content="VoteWise helps Indian citizens understand the election process, check voter eligibility, find polling booths, and learn through an AI-powered assistant.">
+    <meta property="og:title" content="VoteWise — Election Process Education">
+    <meta property="og:description" content="AI-powered election education for Indian citizens. Learn about EVMs, voter registration, ECI, and more.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <noscript><p style="text-align:center; padding:2rem; background:#fff3cd; color:#333;">VoteWise requires JavaScript. Please enable JavaScript in your browser.</p></noscript>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#138808">
     <!-- Google Fonts Noto Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +24,9 @@
         <!-- Google Translate Widget Container -->
         <div id="google_translate_element" aria-label="Language Selector"></div>
     </nav>
+    <div id="setup-banner" role="alert" aria-live="assertive" style="display:none; background:#D32F2F; color:white; padding:1rem 2rem; text-align:center; font-weight:bold;">
+      ⚠️ API keys are not configured. Please rename js/config.example.js to js/config.local.js and add your Gemini and Google Maps API keys to enable AI features.
+    </div>
     <main>
         <section id="hero" class="hero-section">
             <h1>Understand the Election Process of India</h1>
@@ -109,11 +120,17 @@
 
     </main>
 
+    <footer style="text-align:center; padding:1.5rem 2rem; background:var(--color-white); border-top:4px solid var(--color-saffron); color:var(--color-dark); font-size:0.9rem;">
+      <p>VoteWise — Empowering Democratic Participation</p>
+      <p>Data sourced from <a href="https://eci.gov.in" target="_blank" rel="noopener noreferrer" style="color:var(--color-green); font-weight:bold;">Election Commission of India (ECI)</a></p>
+      <p style="margin-top:0.5rem; font-size:0.8rem; color:#666;">Built with Google Gemini · Google Maps · Google Translate · Google Fonts</p>
+    </footer>
+
     <!-- Floating Chat Window -->
     <section id="chat-widget" class="chat-widget" aria-label="AI Chat Assistant">
         <div class="chat-header">
             <h3>VoteWise Assistant</h3>
-            <button id="chat-toggle" aria-label="Toggle Chat">_</button>
+            <button id="chat-toggle" aria-label="Open chat assistant" aria-expanded="false">▲</button>
         </div>
         <div class="chat-body" hidden id="chat-body">
             <div id="chat-messages" class="chat-messages" aria-live="polite">
@@ -134,6 +151,7 @@
     <script src="js/chat.js"></script>
     <script src="js/quiz.js"></script>
     <script src="js/maps.js"></script>
+    <script src="js/init.js"></script>
     <script>
         // Inline service worker registration
         if ('serviceWorker' in navigator) {

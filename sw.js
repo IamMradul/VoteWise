@@ -2,6 +2,7 @@ const CACHE_NAME = 'votewise-cache-v1';
 const urlsToCache = [
   './',
   './index.html',
+  './manifest.json',
   './style.css',
   './js/config.example.js',
   './js/eligibility.js',

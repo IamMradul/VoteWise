@@ -1,5 +1,8 @@
+let conversationHistory = [];
+
 if (typeof document !== 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
+    let isLoading = false;
     const chatToggle = document.getElementById('chat-toggle');
     const chatWidget = document.getElementById('chat-widget');
     const chatBody = document.getElementById('chat-body');
@@ -12,19 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
     chatToggle.addEventListener('click', () => {
         const isHidden = chatBody.hidden;
         chatBody.hidden = !isHidden;
-        chatToggle.textContent = isHidden ? '_' : '^';
-        if (isHidden) {
-            chatInput.focus();
-        }
+        chatToggle.textContent = isHidden ? '▼' : '▲';
+        chatToggle.setAttribute('aria-label', isHidden ? 'Close chat assistant' : 'Open chat assistant');
+        chatToggle.setAttribute('aria-expanded', String(isHidden));
+        if (isHidden) chatInput.focus();
     });
 
     chatForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (isLoading) return;
         const message = chatInput.value.trim();
         if (!message) return;
 
+        isLoading = true;
+
         // Add user message
         addMessage(message, 'user');
+        conversationHistory.push({ role: "user", parts: [{ text: message }] });
+        if (conversationHistory.length > 20) conversationHistory.splice(0, 2);
+
         chatInput.value = '';
         chatInput.disabled = true;
 
@@ -34,11 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const reply = await queryGeminiAPI(message);
             removeMessage('loading-msg');
             addMessage(reply, 'system');
+            conversationHistory.push({ role: "model", parts: [{ text: reply }] });
+            if (conversationHistory.length > 20) conversationHistory.splice(0, 2);
         } catch (error) {
             removeMessage('loading-msg');
             console.error('Chat Error:', error);
             addMessage('Sorry, I encountered an error. Please try again later or verify your API key.', 'system');
         } finally {
+            isLoading = false;
             chatInput.disabled = false;
             chatInput.focus();
         }
@@ -81,9 +93,7 @@ Strict Rules:
         system_instruction: { 
             parts: [{ text: systemPrompt }]
         },
-        contents: [
-            { role: 'user', parts: [{ text: userQuery }] }
-        ],
+        contents: conversationHistory,
         generationConfig: {
             temperature: 0.3,
             maxOutputTokens: 250
