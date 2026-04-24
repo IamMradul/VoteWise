@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Display a placeholder before search
     mapContainer.innerHTML = '<div style="width: 100%; height: 450px; background: var(--color-grey); display: flex; align-items: center; justify-content: center;">Enter your location above to find nearby polling booths.</div>';
 
+    /**
+     * Renders a Google Maps Embed iframe for a given location query.
+     * Sanitizes input with encodeURIComponent before building the URL.
+     * @param {string} location - City name or PIN code to search
+     * @param {string} apiKey - Google Maps Embed API key
+     */
     mapForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const loc = encodeURIComponent(locationInput.value.trim());

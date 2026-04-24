@@ -75,6 +75,12 @@ Injects a language selector in the navigation bar that can translate the entire 
 ### 4. Google Fonts — Noto Sans
 Chosen specifically for its multi-lingual Unicode support, ensuring that translated text renders correctly across all 8 regional languages without font-rendering failures.
 
+### 5. Google Calendar
+Election Day reminders are directly integrated into the timeline module, allowing users to save the voting date directly to their Google Calendar via a custom template link.
+
+### 6. Google Forms
+Citizen feedback collection is embedded in the footer, directing users to a Google Form to gather insights on how to improve the educational experience.
+
 ---
 
 ## ⚙️ How It Works — Approach & Logic
@@ -205,7 +211,28 @@ Expected output:
 ✅ PASS: Gemini Parser: Extracts text correctly
 ✅ PASS: Gemini Parser: Handles empty/invalid object
 
-Test Summary: 12 Passed, 0 Failed.
+✅ PASS: Maps: valid city input
+✅ PASS: Maps: trims whitespace
+✅ PASS: Maps: strips HTML tags
+✅ PASS: Maps: empty string
+✅ PASS: Maps: null input
+✅ PASS: Maps: non-string input
+✅ PASS: Init: valid key detected
+✅ PASS: Init: placeholder detected
+✅ PASS: Init: missing key
+✅ PASS: Init: null config
+✅ PASS: Eligibility: 17.9 (fail)
+✅ PASS: Eligibility: negative age (fail)
+✅ PASS: Eligibility: not resident (fail)
+✅ PASS: Score: perfect score
+✅ PASS: Score: zero score
+✅ PASS: Score: 70 percent
+✅ PASS: Score: division by zero safe
+✅ PASS: Gemini Parser: empty string response
+✅ PASS: Gemini Parser: whitespace response
+✅ PASS: Gemini Parser: undefined input
+
+Test Summary: 44 Passed, 0 Failed.
 ```
 
 ---

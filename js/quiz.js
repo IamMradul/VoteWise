@@ -30,6 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    /**
+     * Generates a 10-question MCQ quiz on Indian elections using Gemini API.
+     * Prompts for JSON output and sanitizes markdown fences before parsing.
+     * @returns {Promise<Array>} Array of question objects with options and explanations
+     */
     async function fetchQuizQuestions() {
         const apiKey = window.APP_CONFIG?.GEMINI_API_KEY;
         if (!apiKey || apiKey === 'YOUR_KEY_HERE') throw new Error('API Key missing');
@@ -61,8 +66,20 @@ Each object must match this schema:
         
         // Parse JSON output from text
         let rawText = data.candidates[0].content.parts[0].text;
-        rawText = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
-        return JSON.parse(rawText);
+        let questions;
+        try {
+            const cleaned = rawText.replace(/```json|```/gi, '').trim();
+            questions = JSON.parse(cleaned);
+            if (!Array.isArray(questions) || questions.length === 0) {
+                throw new Error('Invalid quiz format returned');
+            }
+        } catch (parseError) {
+            console.error('Quiz parse error:', parseError);
+            quizContent.innerHTML = '<p style="color:#D32F2F;">⚠️ Failed to generate quiz. Please try again.</p>';
+            startQuizBtn.disabled = false;
+            return;
+        }
+        return questions;
     }
 
     function renderQuestion() {

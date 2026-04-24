@@ -55,6 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 // Extracted logic for testing purposes (CommonJS / Browser compatible)
+/**
+ * Evaluates whether a user is eligible to vote in Indian elections.
+ * @param {number} age - The user's age in years
+ * @param {boolean} isCitizen - Whether the user is an Indian citizen
+ * @param {boolean} isResident - Whether the user is a resident at their address
+ * @returns {boolean} true if eligible, false otherwise
+ */
 function evaluateEligibility(age, isCitizen, isResident) {
     return age >= 18 && isCitizen && isResident;
 }

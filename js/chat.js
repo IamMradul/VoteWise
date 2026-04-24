@@ -1,4 +1,6 @@
 let conversationHistory = [];
+const IS_DEV = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+const log = IS_DEV ? console.log.bind(console) : () => {};
 
 if (typeof document !== 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,6 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isLoading) return;
         const message = chatInput.value.trim();
         if (!message) return;
+
+        if (message.length > 500) {
+            addMessage('Please keep your question under 500 characters.', 'system');
+            return;
+        }
 
         isLoading = true;
 
@@ -73,6 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 }
 
+/**
+ * Sends a message to the Gemini API via the VoteWise proxy.
+ * Maintains conversationHistory for multi-turn context.
+ * @param {string} userQuery - The user's input message
+ * @returns {Promise<string>} The assistant's text response
+ */
 async function queryGeminiAPI(userQuery) {
     // Determine the API key from config.local.js or config.example.js (fallback)
     const apiKey = window.APP_CONFIG?.GEMINI_API_KEY;
