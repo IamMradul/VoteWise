@@ -8,7 +8,8 @@
     <meta property="og:title" content="VoteWise — Election Process Education">
     <meta property="og:description" content="AI-powered election education for Indian citizens. Learn about EVMs, voter registration, ECI, and more.">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
+    <meta property="twitter:card" content="summary">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.gstatic.com https://maps.googleapis.com https://translate.googleapis.com https://translate.google.com; connect-src 'self' https://generativelanguage.googleapis.com https://www.google-analytics.com https://firestore.googleapis.com https://maps.googleapis.com https://*.firebaseio.com; frame-src 'self' https://www.google.com https://calendar.google.com https://docs.google.com;">
     <noscript><p style="text-align:center; padding:2rem; background:#fff3cd; color:#333;">VoteWise requires JavaScript. Please enable JavaScript in your browser.</p></noscript>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#138808">
@@ -17,6 +18,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        // Measurement ID configured in init.js
+    </script>
+
+    <!-- Firebase v10 Compat SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <nav aria-label="Main Navigation">
@@ -31,6 +45,14 @@
         <section id="hero" class="hero-section">
             <h1>Understand the Election Process of India</h1>
             <p>Empowering citizens to understand the democratic elections run by the Election Commission of India. Learn your rights, the process, and register to vote.</p>
+        </section>
+
+        <!-- About This Project Section -->
+        <section id="about" class="about-section" aria-labelledby="about-heading" style="padding: 2rem; background: var(--color-bg-light); border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid var(--color-blue);">
+            <h2 id="about-heading" style="color: var(--color-blue); margin-bottom: 1rem;">About VoteWise</h2>
+            <p style="font-size: 1.05rem; line-height: 1.6; color: var(--color-dark);">
+                VoteWise is an Election Process Education Assistant specifically designed to empower Indian citizens. It serves as an interactive guide to the General Elections conducted by the Election Commission of India (ECI), helping users check eligibility, understand the Model Code of Conduct, find polling booths, and learn about the democratic voting process.
+            </p>
         </section>
 
         <!-- Timeline Section -->
@@ -111,7 +133,7 @@
             <h2 id="quiz-heading">Test Your Election Knowledge</h2>
             <div id="quiz-container">
                 <button id="start-quiz" aria-label="Start Quiz">Generate & Start Quiz</button>
-                <div id="quiz-content" hidden>
+                <div id="quiz-content" hidden aria-live="polite">
                     <!-- Quiz goes here dynamically -->
                 </div>
             </div>
@@ -121,12 +143,12 @@
         <section id="maps" class="maps-section" aria-labelledby="maps-heading">
             <h2 id="maps-heading">Find Your Polling Booth</h2>
             <p>Explore basic coverage via Maps Integration.</p>
-            <form id="map-form" style="margin-bottom: 1rem; flex-direction: row;">
-                <input type="text" id="location-input" placeholder="Enter your city or pin code" required style="flex: 1;">
-                <button type="submit" aria-label="Search Booth">Search</button>
+            <form id="map-form" style="margin-bottom: 1rem; flex-direction: row; display: flex;">
+                <input type="text" id="location-input" placeholder="Enter your city or pin code" required style="flex: 1; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px; margin-right: 0.5rem;">
+                <button type="submit" aria-label="Search Booth" style="padding: 0.8rem 1.5rem;">Search</button>
             </form>
-            <div id="map-container">
-                <!-- Google Maps Embed dynamically loaded here -->
+            <div id="map-container" style="width: 100%; height: 450px; background: var(--color-grey);">
+                <!-- Google Maps will be dynamically loaded here -->
             </div>
         </section>
 
